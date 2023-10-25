@@ -62,8 +62,8 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 
 ## 🛠️ Setup Virtual Environment for EDA & Training
 
-Setting up the virtual environment using **Miniconda**. This project using Python `3.10.12`.
-1. Installing Miniconda for installing Python 3.10.12
+Setting up the virtual environment using **Miniconda** with Python `3.10.12`.
+1. Installing Miniconda
     - Depending on your Host OS following instruction from:\
     https://docs.conda.io/projects/miniconda/en/latest/
 
