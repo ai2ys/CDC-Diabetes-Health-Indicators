@@ -60,7 +60,7 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 📥 How the dataset was downloaded and stored locally is described in the EDA notebook.
 
 
-## 🛠️ Setup Virtual Environment for EDA & Training
+## 🛠️ Setup Virtual Environment for EDA and Training
 
 Setting up the virtual environment using **Miniconda** with Python `3.10.12`.
 1. Installing Miniconda
@@ -84,23 +84,24 @@ Setting up the virtual environment using **Miniconda** with Python `3.10.12`.
         jupyter lab
         ```
 
-## EDA (Exploratory Data Analysis)
+## 📊 EDA (Exploratory Data Analysis) and 🧠 Model Training
 
-### EDA - Setup Development Environment
+The Jupyter Notebook [`eda.ipynb`](eda.ipynb) contains
 
-<!-- setup virtual environment using python 3.10.12 -->
-<!-- install jupyter notebook -->
-<!-- install required python packages -->
+1. EDA for the dataset
+1. Training and evaluating different models
+    - Different algorithms (tree-based and linear models)
+    - Different hyperparameters
 
+🐍 Activate the virtual environment and start JupyterLab as described in section [🛠️ Setup Virtual Environment for EDA & Training](#🛠️-setup-virtual-environment-for-eda-and-training)
 
-<!-- basic eda only min-max values -->
-<!-- extended eda range of values missing values, analysis of target variable and feature importance -->
-<!-- explain how virtual environment or Docker container can get started -->
+```bash
+# activate virtual environment
+conda activate mlzoomcamp-midterm
+# within the activated environment start JupyterLab
+jupyter lab
+```
 
-## Model training
-
-<!-- training multiple models linear and tree based -->
-<!-- hyperparameter tuning -->
 
 ## Export notebook to Python script
 
