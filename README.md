@@ -1,6 +1,20 @@
 
 # CDC Diabetes Health Indicators<br>*(MLZoomCamp midterm project)*
 
+Table of Contents: 
+1. [📖 Introduction](#📖-introduction)
+1. [📋 Dataset Information](#📋-dataset-information)
+1. [📊 EDA and 🧠 Model Training](#📊-eda-and-🧠-model-training)
+    1. [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup)
+    1. [📓 Running the 📊 Notebook](#📓-running-the-📊-notebook)
+    1. [💡Insights and Results from 📊 EDA and 🧠 Model Training](#💡insights-and-results-from-📊-eda-and-🧠-model-training)
+    1. [📤 Export notebook to 🐍 Python script](#📤-export-notebook-to-🐍-python-script)
+1. [🚀 Model Deployment](#🚀-model-deployment)
+1. [🐋 Containerization](#🐋-containerization)
+1. [☁️ Cloud Deployment](#☁️-cloud-deployment)
+
+## 📖 Introduction
+
 This project uses the [CDC Diabetes Health Indicators dataset](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators) dataset for training a model to predict if a patient is diabetic/pre-diabetic or does not have diabetes based on the patients heath records.
 
 
@@ -60,55 +74,97 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 📥 How the dataset was downloaded and stored locally is described in the EDA notebook.
 
 
-## 🛠️ Setup Virtual Environment for EDA and Training
+## 📊 EDA and 🧠 Model Training
 
-Setting up the virtual environment using **Miniconda** with Python `3.10.12`.
+📊 EDA stands for Exploratory Data Analysis, which is the process of analyzing data sets to summarize the main characteristics, often including visualizations of the data. EDA is used for seeing what the data can tell us about the data.
+
+🧠 Model training is the process of training a machine learning model to make predictions based on data. The model training process includes the following steps:
+
+1. Data preprocessing
+1. Model training
+1. Model evaluation
+
+📓 The EDA and model training will be performed in a Jupyter Notebook [`eda.ipynb`](eda.ipynb). In this notebook, we will perform the following steps:
+
+1. Exploratory Data Analysis (EDA)
+1. Data preprocessing
+1. Model training
+    - Different algorithms (tree-based and linear models)
+    - Different hyperparameters
+1. Model evaluation
+1. Model selection
+
+All required steps for setting up the virtual environment to run the notebook are described in the [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup) section.
+
+🐍 For training the final model after the model selection step we will extract the required Python code to a script called [`train.py`](train.py). This notebook will be used to train the final model and save it to disk. Steps covered in the [`train.py`](train.py) script will be:
+
+1. Data preprocessing
+1. Model training
+1. Model evaluation
+1. Model storage
+
+### 🛠️ Virtual Environment Setup
+
+🐍 Setting up the virtual environment for 📊 EDA and 🧠 Model Training using **Miniconda** with Python `3.10.12`. All required packages will be installed from the [`requirements-eda.txt`](requirements-eda.txt) file. There the packages are listed with their version number to ensure reproducibility.
+
 1. Installing Miniconda
-    - Depending on your Host OS following instruction from:\
+    - Follow the instruction from for your host OS:\
     https://docs.conda.io/projects/miniconda/en/latest/
 
-1. Creating the virual environment using Python 3.10.12
+1. Creating the virtual environment using Python 3.10.12
     ```bash
     conda create --name mlzoomcamp-midterm python=3.10.12
     ```	
+
 1. Activating the virtual environment
     ```bash
     conda activate mlzoomcamp-midterm
     ```
-    - Install the requirements within the activated virtual environment `(mlzoomcamp-midterm)`
-        ```bash
-        pip install -r requirements-eda.txt
-        ```
-    - Start JupyterLab
-        ```bash
-        jupyter lab
-        ```
+    - The command prompt should now indicate that the virtual environment is activated and show the name of the virtual environment in parentheses `(mlzoomcamp-midterm)`.\
+    Within the activated virtual environment `(mlzoomcamp-midterm)` perform the following steps:
 
-## 📊 EDA (Exploratory Data Analysis) and 🧠 Model Training
+        1. Install the requirements from the [`requirements-eda.txt`](requirements-eda.txt) 
+            ```bash
+            pip install -r requirements-eda.txt
+            ```
+        1. Start JupyterLab to check if the installation was successful
+            ```bash
+            jupyter lab
+            ```
 
-The Jupyter Notebook [`eda.ipynb`](eda.ipynb) contains
 
-1. EDA for the dataset
-1. Training and evaluating different models
-    - Different algorithms (tree-based and linear models)
-    - Different hyperparameters
+> *Additional information:*     
+>The commands above worked in WSL2 (Windows Subsystem for Linux) on Windows 11 and should be the same on Linux. The Conda version installed on my system is `23.0.9` ([Conda command reference `23.9.x`](https://docs.conda.io/projects/conda/en/23.9.x/commands/index.html).\
+> In case you are using a different Conda version and the Conda commands do not work on your system, check the conda cheat-sheet of your installed conda version for the correct commands.
 
-🐍 Activate the virtual environment and start JupyterLab as described in section [🛠️ Setup Virtual Environment for EDA & Training](#🛠️-setup-virtual-environment-for-eda-and-training)
+
+
+### 📓 Running the 📊 Notebook
+
+The previous created virtual environment `(mlzoomcamp-midterm)` has JupyterLab installed. In order to start JupyterLab, the virtual environment needs to be activated first. Activate the virtual environment that we created in the previous section [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup).
 
 ```bash
-# activate virtual environment
+# activating the virtual environment using 'mlzoomcamp-midterm
 conda activate mlzoomcamp-midterm
-# within the activated environment start JupyterLab
+# within the activated environment indicated by '(mlzoomcamp-midterm)' start JupyterLab 
 jupyter lab
 ```
 
+### 💡Insights and Results from 📊 EDA and 🧠 Model Training
 
-## Export notebook to Python script
+tbd
+<!-- TODO: tbd insights and results-->
 
-<!--  -->
 
-## Model Deployment
+### 📤 Export notebook to 🐍 Python script
 
+tbd
+
+<!-- TODO: tbd export notebook to Python script -->
+
+## 🚀 Model Deployment
+tbd
+<!-- TODO: tbd model deployment -->
 <!-- 1. Within the activated environment `(mlzoomcamp-midterm)...$`
     - Install `pipenv` 
         ```bash
@@ -127,11 +183,12 @@ jupyter lab
 
 <!-- Deploying model using e.g. Flask -->
 
-## Containerization
-
-## Cloud Deployment
-
-
+## 🐋 Containerization
+tbd
+<!-- TODO: tbd containerization-->
+## ☁️ Cloud Deployment
+tbd
+<!-- TODO: tbd cloud deployment -->
 
 
 
