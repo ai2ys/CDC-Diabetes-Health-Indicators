@@ -71,7 +71,10 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 
 💡 In this project, we utilize the ucimlrepo Python package to download the initial dataset. To ensure reproducibility, all relevant data for exploratory data analysis (EDA) and training will be stored locally. This approach safeguards against potential issues, such as unavailability or changes to the dataset in the UCI Machine Learning Repository over time.
 
-📥 How the dataset was downloaded and stored locally is described in the EDA notebook.
+📥 How the dataset was downloaded and stored locally is described in the EDA notebook [`eda.ipynb`](eda.ipynb). The dataset and parts of the metadata is downloaded and stored in the [./dataset](dataset) folder locally.
+- dataframe - [./dataset/data.csv](dataset/data.csv)
+- information about variables - [./dataset/variables.csv](dataset/variables.csv)
+- metadata (only some parts of it) - [./dataset/metadata_partially.json](dataset/metadata_partially.json)
 
 
 ## 📊 EDA and 🧠 Model Training
@@ -158,16 +161,15 @@ tbd
 
 #### 📊 EDA - Variables (Target and Features) 
 
-Information revealed during the EDA from the dataset and its metadata
+Information revealed during the EDA from the dataset and its metadata.
 
-
-| ID | Type | Description | 
+|  | Type | Description | 
 | --- | --- | --- |
 | ID | Integer | Patient ID |
 
-<br>
 
-| Target | Type | Description | 
+
+| Target variable | Type | Description | 
 | --- | --- | --- |
 | Diabetes_binary | Binary | 0 = no diabetes<br>1 = prediabetes or diabetes |
 
@@ -207,7 +209,21 @@ Features in are sorted in the table below using their data type:
 | ffWalk | Binary | Do you have serious difficulty walking or climbing stairs? |
 
 
+#### 📊 EDA - missing values, duplicates, ...
 
+✅ As stated in the dataset information, the dataset has no missing values
+
+
+<!-- TODO add more insights  -->
+tbd
+
+The [BMI (body mass index)](https://en.wikipedia.org/wiki/Body_mass_index) is calculated using the following formula:
+
+$$
+BMI = \frac{mass_{kg}}{height_{m}^2}
+$$
+
+The result is a floating point number, but in the dataset the BMI is stored as an integer. This means that the BMI is rounded to the next integer. 
 
 
 ### 📤 Export notebook to 🐍 Python script
