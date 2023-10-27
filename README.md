@@ -206,7 +206,7 @@ Features in are sorted in the table below using their data type:
 | HvyAlcoholConsump | Binary | Heavy drinkers (adult men having more than 14 drinks per week and adult women having more than 7 drinks per week)|
 | AnyHealthcare | Binary | "Have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc. |
 | NoDocbcCost | Binary | Was there a time in the past 12 months when you needed to see a doctor but could not because of cost? |
-| ffWalk | Binary | Do you have serious difficulty walking or climbing stairs? |
+| DiffWalk | Binary | Do you have serious difficulty walking or climbing stairs? |
 
 
 #### 📊 EDA - missing values, duplicates, ...
