@@ -1,0 +1,6 @@
+# ignore all
+*
+
+# except for the following
+!Pipfile*
+!predict.py

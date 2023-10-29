@@ -14,3 +14,6 @@ matplotlib==3.7.3
 seaborn==0.12.2
 
 ucimlrepo==0.0.2
+mlxtend==0.23.0
+tqdm==4.66.1
+xgboot==2.0.1
