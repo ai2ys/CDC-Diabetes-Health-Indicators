@@ -228,16 +228,27 @@ The result is a floating point number, but in the dataset the BMI is stored as a
 
 ### 📤 Export notebook to 🐍 Python script
 
-All code that is required for training the final model will be exported to the [`train.py`](train.py) file. And can be run using:
+All code that is required for training the final model will be exported to the [`train.py`](train.py) file.
+Make sure the development environment defined in section [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup) is activated before running the following commands.
 
 ```bash
 python train.py
 ```
 
+Create a json file by randomly sampling a test dataset entry. The sample will be stored to [`test_sample.json`](test_sample.json).
+
+```bash
+# randomly
+python sample_from_test.py
+
+# using a specific seed value
+python sample_from_test.py --seed 1234
+```
+
 
 ## 🧩 Model Deployment
 
-Create a new virtual environment for the deployment.
+Create a new virtual environment for testing the deployment.
 
 1. Creating the virtual environment using Python 3.10.12
     ```bash
@@ -257,16 +268,12 @@ Create a new virtual environment for the deployment.
             ```
         1. Test the deployment script starting the predict service
             ```bash
-            waitress-serve --listen=0.0.0.0:9696 predict:app
+            #waitress-serve --listen=0.0.0.0:9696 predict:app
+            python predict.py
             ```
-            Pass a sample to the predict service
+            Pass a sample [`test_sample.py`](test_sample.py) to the predict service
             ```bash	
-            cat test_sample.json | \
-                curl \
-                -X POST \
-                -H \"Content-Type: application/json\" \
-                -d @- \
-                http://localhost:9696/predict 
+            python test.py
             ```
 
 
