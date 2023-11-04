@@ -228,12 +228,48 @@ The result is a floating point number, but in the dataset the BMI is stored as a
 
 ### 📤 Export notebook to 🐍 Python script
 
-tbd
+All code that is required for training the final model will be exported to the [`train.py`](train.py) file. And can be run using:
 
-<!-- TODO: tbd export notebook to Python script -->
+```bash
+python train.py
+```
+
 
 ## 🧩 Model Deployment
-tbd
+
+Create a new virtual environment for the deployment.
+
+1. Creating the virtual environment using Python 3.10.12
+    ```bash
+    conda create --name deployment-midterm python=3.10.12
+    ```	
+
+1. Activating the virtual environment
+    ```bash
+    conda activate deployment-midterm
+
+    - The command prompt should now indicate that the virtual environment is activated and show the name of the virtual environment in parentheses `(deployment-midterm)`.\
+    Within the activated virtual environment `(deployment-midterm)` perform the following steps:
+
+        1. Install the requirements from the [`requirements-deployment.txt`](deployment-eda.txt) 
+            ```bash
+            pip install -r requirements-deployment.txt
+            ```
+        1. Test the deployment script starting the predict service
+            ```bash
+            waitress-serve --listen=0.0.0.0:9696 predict:app
+            ```
+            Pass a sample to the predict service
+            ```bash	
+            cat test_sample.json | \
+                curl \
+                -X POST \
+                -H \"Content-Type: application/json\" \
+                -d @- \
+                http://localhost:9696/predict 
+            ```
+
+
 <!-- TODO: tbd model deployment -->
 <!-- 1. Within the activated environment `(mlzoomcamp-midterm)...$`
     - Install `pipenv` 
