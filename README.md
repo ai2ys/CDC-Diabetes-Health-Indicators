@@ -258,46 +258,56 @@ Create a new virtual environment for testing the deployment.
 1. Activating the virtual environment
     ```bash
     conda activate deployment-midterm
-
-    - The command prompt should now indicate that the virtual environment is activated and show the name of the virtual environment in parentheses `(deployment-midterm)`.\
+    ```
+    The command prompt should now indicate that the virtual environment is activated and show the name of the virtual environment in parentheses `(deployment-midterm)`.\
     Within the activated virtual environment `(deployment-midterm)` perform the following steps:
 
-        1. Install the requirements from the [`requirements-deployment.txt`](deployment-eda.txt) 
-            ```bash
-            pip install -r requirements-deployment.txt
-            ```
-        1. Test the deployment script starting the predict service
-            ```bash
-            #waitress-serve --listen=0.0.0.0:9696 predict:app
-            python predict.py
-            ```
-            Pass a sample [`test_sample.py`](test_sample.py) to the predict service
-            ```bash	
-            python test.py
-            ```
-
-
-<!-- TODO: tbd model deployment -->
-<!-- 1. Within the activated environment `(mlzoomcamp-midterm)...$`
-    - Install `pipenv` 
+    1. Install the requirements from the [`requirements-deployment.txt`](deployment-eda.txt) 
         ```bash
-        pip install pipenv==2023.10.24
+        pip install -r requirements-deployment.txt
+        ```
+    1. Test the deployment script starting the predict service
+        <!-- #waitress-serve --listen=0.0.0.0:9696 predict:app -->
+        ```bash
+        python predict.py
+        ```
+        Pass a sample [`test_sample.py`](test_sample.py) to the predict service
+        ```bash	
+        python test.py
         ```
 
-    1. Create a `Pipfile` and `Pipfile.lock` based on the provided `requirements-eda.txt`
-        ```bash
-        pipenv install -r requirements-eda.txt
-        ```
-    1. Activate the `pipenv shell` for this project
-        ```bash
-        pipenv shell
-        ``` -->
-
-
-<!-- Deploying model using e.g. Flask -->
+    1. Creating a Pipfile and Pipfile.lock for containerization using `pipenv`
+        1. Install `pipenv` 
+            ```bash
+            pip install pipenv==2023.10.24
+            ```
+        1. Create a `Pipfile` and `Pipfile.lock` based on the provided `requirements-eda.txt`
+            ```bash
+            pipenv install -r requirements-deployment.txt
+            ```
+        <!-- 1. Activate the `pipenv shell` for this project
+            ```bash
+            pipenv shell
+            ``` -->
 
 ## 🐋 Containerization
-tbd
+
+Building the Docker container
+```bash
+docker build -t cdc-diabetes .
+```
+
+Running the Docker container
+```bash	
+docker run --rm -p 9696:9696 cdc-diabetes
+```
+
+Testing the prediction service in the Docker container from the virtual environment `(deployment-midterm)`.
+
+```bash
+python test.py	
+```
+
 <!-- TODO: tbd containerization-->
 ## ☁️ Cloud Deployment
 tbd
