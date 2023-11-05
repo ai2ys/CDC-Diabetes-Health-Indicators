@@ -248,7 +248,9 @@ if __name__ == "__main__":
     dataset_loader = DatasetLoader(
         path_train='dataset/split_train.csv', 
         path_val='dataset/split_val.csv',
-        path_test='dataset/split_test.csv')
+        path_test='dataset/split_test.csv',
+        seed=seed,
+        shuffle=True)
     random_forest = TrainRandomForest(
         hparams={
             'max_depth': 6, 
