@@ -19,7 +19,8 @@ class DatasetLoader(object):
         shuffle:bool=False):
         self.df_train_full = pd.read_csv(path_train, index_col='ID')
         self.df_test = pd.read_csv(path_test, index_col='ID')
-
+        self.target_column = 'Diabetes_binary'
+        self.id_column = 'ID'
         if path_val is not None:
             self.path_val = pd.read_csv(path_val, index_col='ID')
             self.df_train_full = pd.concat([self.df_train_full, self.path_val])
@@ -31,6 +32,7 @@ class DatasetLoader(object):
         # scale/normalize data and create DictVectorizer object
         self.data_normalizers = self.create_data_normalizers()
         self.dv = DictVectorizer(sparse=False)
+        train_full = self.preprocess_features(self.train_full)
         self.dv.fit(self.preprocess_features(self.train_full).to_dict(orient='records'))
 
         self.X_train_full, self.y_train_full = self.create_X_y(self.df_train_full)
@@ -144,14 +146,17 @@ class DatasetLoader(object):
         Returns:
             (pd.DataFrame, pd.Series): The preprocessed X data and y data
         """
-        target_column = 'Diabetes_binary'
+        
         # define the feature columns
-        feature_columns = [col for col in df.columns if col != target_column]
+        feature_columns = [col for col in df.columns if col != self.target_column]
+        
+        assert self.target_column not in feature_columns, f"Target column found in the feature columns:\n{feature_columns}"
+        assert self.id_column not in feature_columns, f"ID column found in the feature columns:\n{feature_columns}"
 
         # split the data into train and val data
         X = self.preprocess_features(df[feature_columns])
         X = self.dv.transform(X.to_dict(orient='records'))
-        y = df[target_column]
+        y = df[self.target_column]
 
         return X, y
 
