@@ -33,7 +33,9 @@ The dataset used in this project was created to to better understand the relatio
 - Features variables
 - Target variable
 
-🔗 Dataset page: [CDC Diabetes Health Indicators](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators)
+🔗 Dataset page:
+- [CDC Diabetes Health Indicators](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators)
+- [DOI 10.24432/C53919](https://doi.org/10.24432/C53919)
 
 The [CDC Diabetes Health Indicators dataset](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators) is available on the [UCI Machine Learning Repository](https://archive.ics.uci.edu/). 
 
@@ -242,7 +244,7 @@ $$
 
 
 
-### Export notebook to Python scrip
+### Export notebook to Python script
 📤Information on training code exported to the 🐍 Python script. The script will cover the following tasks:
 - Loading the dataset splits: train, validation, and test
 - Creating a 'full training' dataset consisting of training and validation splits
@@ -307,7 +309,7 @@ Create a new virtual environment for testing the deployment.
         ```
         Pass a sample [`test_sample.py`](test_sample.py) to the predict service
         ```bash	
-        python test.py
+        python test_predict.py
         ```
 
     1. Creating a Pipfile and Pipfile.lock for containerization using `pipenv`
@@ -332,34 +334,107 @@ Prerequisites
 - Docker
 - Activated environment `deployment-midterm` for running the test script.
 
-Building the Docker container and tagging it as `cdc-diabetes`
+
+The Docker image `docker pull ai2ys/mlzoomcamp-midterm-project:0.0.0` has been pushed to the 🐋 DockerHub registry. Therefore you can run the container without prior building by just running the container, which will pull the image from DockerHub.
+
+<!-- 
+Command used for pushing the Docker image
 ```bash
-docker build -t cdc-diabetes .
+docker push ai2ys/mlzoomcamp-midterm-project:0.0.0
 ```
 
-Running the Docker container
+Command used for pulling the Docker image
 ```bash	
-docker run --rm -p 9696:9696 cdc-diabetes
-```
+docker pull ai2ys/mlzoomcamp-midterm-project:0.0.0
+``` -->
 
-Testing the prediction service in the Docker container from the virtual environment `(deployment-midterm)`.
+1. *Optional:* Building the Docker image `ai2ys/mlzoomcamp-midterm-project:0.0.0`
+    ```bash
+    docker build -t ai2ys/mlzoomcamp-midterm-project:0.0.0 .
+    ```
 
-```bash
-# activate the virtual environment
-conda activate deployment-midterm
-# run the test script
-python test.py	
-```
+1. Running the Docker container
+    ```bash	
+    docker run --rm -p 9696:9696 ai2ys/mlzoomcamp-midterm-project:0.0.0
+    ```
 
-<!-- TODO: tbd containerization-->
+1. Testing the prediction service in the Docker container from the virtual environment `(deployment-midterm)`.
+
+    ```bash
+    # activate the virtual environment
+    conda activate deployment-midterm
+    # run the test script
+    python test_predict.py	
+    ```
+
+
+
 ##  Cloud Deployment
-☁️ tbd
-<!-- TODO: tbd cloud deployment -->
+☁️ Instructions for the cloud deployment using AWS Elastic Beanstalk.
+
+Prerequisites
+- Amazon AWS Account<br>
+    For this task an AWS account is required. Please create an AWS account following the instructions from [Machine Learning Bookcamp - Creating an AWS Account](https://mlbookcamp.com/article/aws).
+
+- [Installing the EB CLI (elastic beanstalk command line interface)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install-advanced.html)<br>
+    ```bash	
+    # create virtual environment for AWS Elastic Beanstalk
+    conda create --name awsebcli python=3.10.12 
+    # install AWS Elastic Beanstalk CLI
+    pip install awsebcli==3.20.10
+    # activate the virtual environment
+    conda activate awsebcli
+    # check AWS Elastic Beanstalk CLI version
+    eb --version
 
 
+Creating and running the prediction service on AWS Elastic Beanstalk
+
+1. Initialize AWS Elastic Beanstalk project
+    ```bash	
+    # if not already using activate the virtual environment
+    conda activate awsebcli
+    # initialize eb, select region, specify credentials
+    eb init -p "Docker running on 64bit Amazon Linux 2023" -r eu-west-1 --profile <profile> mlzoomcamp-midterm-project
+    ```
+1. Using AWS Elastic Beanstalk to run the service locally
+    ```bash
+    # if not already using activate the virtual environment
+    conda activate awsebcli
+    eb local run --port 9696
+    ```
+    In another terminal run the [`test_predict.py`](test_predict.py)
+    ```bash
+    conda activate mlzoomcamp-midterm
+    python test_predict.py
+    ```
+1. Run the prediction service on AWS Elastic Beanstalk
+    ```bash
+    # if not already using activate the virtual environment
+    conda activate awsebcli
+    eb create mlzoomcamp-midterm-env
+    ```
+    In another terminal run the [`test_predict.py`](test_predict.py)
+    ```bash
+    conda activate mlzoomcamp-midterm
+    python test_predict.py --url <elastic beanstalk url>
+    ```
+
+1. When we are done running the prediction service on AWS Elastic Beanstalk
+    ```bash
+    # if not already using activate the virtual environment
+    conda activate awsebcli
+    eb terminate mlzoomcamp-midterm-env
+    ```
+    
 
 
+<!-- getting started https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Gettineb
+1. Sign in to your AWS account
+1. Search for 'Amazon Elastic Beanstalk' 
+    1. Select 'Create application' button
 
+<!-- [Configure AWS Elastic Beanstalk CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html)<br> -->
 
 
 
