@@ -12,9 +12,9 @@ def load(filename: str):
         return pickle.load(f_in)
 
 
-data_normalizers = json.load(open('data_normalizers.json', 'r'))
+data_normalizers = json.load(open('models/data_normalizers.json', 'r'))
 model = load('models/model_random_forest.bin')
-dv = load('models/dv_random_forest.bin')
+dv = load('models/dv.bin')
 app = Flask('pre-diabetic-classifier')
 
 

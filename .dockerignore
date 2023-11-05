@@ -5,5 +5,5 @@
 !Pipfile*
 !predict.py
 !models/model_random_forest.bin
-!models/dv_random_forest.bin
-!data_normalizers.json
+!models/dv.bin
+!models/data_normalizers.json
