@@ -7,3 +7,7 @@
 !models/model_random_forest.bin
 !models/dv.bin
 !models/data_normalizers.json
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+.git
+.gitignore
