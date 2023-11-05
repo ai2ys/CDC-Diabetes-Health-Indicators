@@ -2,19 +2,20 @@
 # CDC Diabetes Health Indicators<br>*(MLZoomCamp midterm project)*
 
 Table of Contents: 
-1. [📖 Introduction](#📖-introduction)
-1. [📋 Dataset Information](#📋-dataset-information)
-1. [📊 EDA and 🧠 Model Training](#📊-eda-and-🧠-model-training)
-    1. [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup)
-    1. [▶️ Running the 📓 Notebook](#▶️-running-the-📓-notebook)
-    1. [💡Insights and Results from 📊 EDA and 🧠 Model Training](#💡insights-and-results-from-📊-eda-and-🧠-model-training)
-    1. [📤 Export notebook to 🐍 Python script](#📤-export-notebook-to-🐍-python-script)
-1. [🧩 Model Deployment](#🧩-model-deployment)
-1. [🐋 Containerization](#🐋-containerization)
-1. [☁️ Cloud Deployment](#☁️-cloud-deployment)
+1. [📖 Introduction](#introduction)
+1. [📋 Dataset Information](#dataset-information)
+1. [📊 EDA and 🧠 Model Training](#eda-and-model-training)
+    1. [🛠️ Virtual Environment Setup](#virtual-environment-setup)
+    1. [▶️ Running the 📓 Notebook](#running-the-notebook)
+    1. [💡Information from 📊 EDA and 🧠 Model Training](#information-from-eda-and-model-training)
+    1. [📤 Export notebook to 🐍 Python script](#export-notebook-to-python-script)
+1. [🧩 Model Deployment](#model-deployment)
+1. [🐋 Containerization](#containerization)
+1. [☁️ Cloud Deployment](#cloud-deployment)
 
-## 📖 Introduction
+## Introduction
 
+📖
 This project uses the [CDC Diabetes Health Indicators dataset](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators) dataset for training a model to predict if a patient is diabetic/pre-diabetic or does not have diabetes based on the patients heath records.
 
 
@@ -22,11 +23,15 @@ This project uses the [CDC Diabetes Health Indicators dataset](https://archive.i
 
 **Task:** This midterm project aims to build a service that predicts whether a patient has diabetes, is pre-diabetic, or healthy using data provided by the "Diabetes Health Indicators Dataset" provided by the CDC. 
 
-More information about the dataset can be found in the [Dataset Information](#📋-dataset-information) section.
+More information about the dataset can be found in the [Dataset Information](#dataset-information) section.
 
 The dataset used in this project was created to to better understand the relationship between lifestyle and diabetes in the US and the creation was funded by the [CDC (Center for Disease Control and Prevention)](https://www.cdc.gov/).
 
-## 📋 Dataset Information
+## Dataset Information
+📋 Information regarding the dataset
+- Source and download location
+- Features variables
+- Target variable
 
 🔗 Dataset page: [CDC Diabetes Health Indicators](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators)
 
@@ -77,7 +82,7 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 - metadata (only some parts of it) - [./dataset/metadata_partially.json](dataset/metadata_partially.json)
 
 
-## 📊 EDA and 🧠 Model Training
+## EDA and Model Training
 
 📊 EDA stands for Exploratory Data Analysis, which is the process of analyzing data sets to summarize the main characteristics, often including visualizations of the data. EDA is used for seeing what the data can tell us about the data.
 
@@ -97,7 +102,7 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 1. Model evaluation
 1. Model selection
 
-All required steps for setting up the virtual environment to run the notebook are described in the [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup) section.
+All required steps for setting up the virtual environment to run the notebook are described in the [🛠️ Virtual Environment Setup](#virtual-environment-setup) section.
 
 🐍 For training the final model after the model selection step we will extract the required Python code to a script called [`train.py`](train.py). This notebook will be used to train the final model and save it to disk. Steps covered in the [`train.py`](train.py) script will be:
 
@@ -106,7 +111,7 @@ All required steps for setting up the virtual environment to run the notebook ar
 1. Model evaluation
 1. Model storage
 
-### 🛠️ Virtual Environment Setup
+### Virtual Environment Setup
 
 🐍 Setting up the virtual environment for 📊 EDA and 🧠 Model Training using **Miniconda** with Python `3.10.12`. All required packages will be installed from the [`requirements-eda.txt`](requirements-eda.txt) file. There the packages are listed with their version number to ensure reproducibility.
 
@@ -141,9 +146,11 @@ All required steps for setting up the virtual environment to run the notebook ar
 > In case you are using a different Conda version and the Conda commands do not work on your system, check the conda cheat-sheet of your installed conda version for the correct commands.
 
 
-### ▶️ Running the 📓 Notebook
+### Running the Notebook
 
-The previous created virtual environment `(mlzoomcamp-midterm)` has JupyterLab installed. In order to start JupyterLab, the virtual environment needs to be activated first. Activate the virtual environment that we created in the previous section [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup).
+Information on▶️ running the 📓notebook.
+
+The previous created virtual environment `(mlzoomcamp-midterm)` has JupyterLab installed. In order to start JupyterLab, the virtual environment needs to be activated first. Activate the virtual environment that we created in the previous section [🛠️ Virtual Environment Setup](#virtual-environment-setup).
 
 ```bash
 # navigate to project directory, the location and command (here: 'cd') might differ on your system
@@ -154,14 +161,16 @@ conda activate mlzoomcamp-midterm
 jupyter lab
 ```
 
-### 💡Insights and Results from 📊 EDA and 🧠 Model Training
+### Information from EDA and Model Training
 
-tbd
-<!-- TODO: tbd insights and results-->
+💡Insights and Results from the 📊 EDA (exploratory data analysis) and the 🧠 Model Training.
 
-#### 📊 EDA - Variables (Target and Features) 
+<!-- 💡Insights and Results from 📊 EDA and 🧠 Model Training -->
 
-Information revealed during the EDA from the dataset and its metadata.
+
+#### EDA - Variables (Target and Features) 
+
+💡Information revealed during the 📊 EDA from the dataset and its metadata.
 
 |  | Type | Description | 
 | --- | --- | --- |
@@ -209,33 +218,55 @@ Features in are sorted in the table below using their data type:
 | DiffWalk | Binary | Do you have serious difficulty walking or climbing stairs? |
 
 
-#### 📊 EDA - missing values, duplicates, ...
+#### EDA - missing values, duplicates, imbalances, etc.
 
-✅ As stated in the dataset information, the dataset has no missing values
+💡Information revealed about the dataset during 📊EDA regarding
+- Missing values
+    - ✅ As stated in the dataset information, the dataset has no missing values
+- Duplicates
+    - ✅ There are duplicate rows in the dataset when not taking into account the patient ID. This is due to the fact that feature variables are categorical, binary and integer. The integer values have either only value ranges between 1 and 30 or are discrete values although the original values were floating point (feature `BMI`). Therefore these rows represent different patients that just represent the same feature variables due to their nature.
+- Imbalances
+    - ✅ The dataset is highly imbalanced with respect to the target varibale
+        - 14% (pre-)diabetic
+        - 86% non-diabetic
 
 
-<!-- TODO add more insights  -->
-tbd
-
-The [BMI (body mass index)](https://en.wikipedia.org/wiki/Body_mass_index) is calculated using the following formula:
+The [BMI (body mass index)](https://en.wikipedia.org/wiki/Body_mass_index) is calculated using the following formula. The result is a floating point number, but in the dataset the BMI is stored as an integer. This means that the BMI is rounded to the next integer. 
 
 $$
-BMI = \frac{mass_{kg}}{height_{m}^2}
+BMI_{\text{float}} = \frac{mass_{kg}}{height_{m}^2}
+\\
+BMI_{\text{integer}} = \text{integer}\left(\frac{mass_{kg}}{height_{m}^2} + 0.5 \right)
 $$
 
-The result is a floating point number, but in the dataset the BMI is stored as an integer. This means that the BMI is rounded to the next integer. 
 
 
-### 📤 Export notebook to 🐍 Python script
+
+### Export notebook to Python scrip
+📤Information on training code exported to the 🐍 Python script. The script will cover the following tasks:
+- Loading the dataset splits: train, validation, and test
+- Creating a 'full training' dataset consisting of training and validation splits
+- Creating a test dataset consisting of the test split
+- Training the model on the 'full training' dataset
+- Evaluating the model on the test dataset
+- Saving the following data to files (bin and json)
+    - Model
+    - DictVectorizer (fitted on 'full training' dataset)
+    - Normalization values (determined on 'full training' dataset in order to normalize the value ranges of some feature variables)
 
 All code that is required for training the final model will be exported to the [`train.py`](train.py) file.
-Make sure the development environment defined in section [🛠️ Virtual Environment Setup](#🛠️-virtual-environment-setup) is activated before running the following commands.
+
+🐍 Make sure the development environment defined in section [🛠️ Virtual Environment Setup](#virtual-environment-setup) is activated before running the following commands.
 
 ```bash
+# Activate the development environment
+conda activate mlzoomcamp-midterm
+
+# ▶️ Execute the 🐍 Python script
 python train.py
 ```
 
-Create a json file by randomly sampling a test dataset entry. The sample will be stored to [`test_sample.json`](test_sample.json).
+For later testing the model with the predict service sample a patient's data information from the test dataset. For this purpose the following script can be used to randomly sampling a test dataset entry. The sample will be stored to [`test_sample.json`](test_sample.json).
 
 ```bash
 # randomly
@@ -245,8 +276,11 @@ python sample_from_test.py
 python sample_from_test.py --seed 1234
 ```
 
+This [`test_sample.json`](test_sample.json) will be used when testing the model during the next step the Model Deployment.
 
-## 🧩 Model Deployment
+## Model Deployment
+
+🧩 For deploying 
 
 Create a new virtual environment for testing the deployment.
 
@@ -290,9 +324,15 @@ Create a new virtual environment for testing the deployment.
             pipenv shell
             ``` -->
 
-## 🐋 Containerization
+## Containerization
 
-Building the Docker container
+🐋 Putting the prediction service in a Docker container. 
+
+Prerequisites
+- Docker
+- Activated environment `deployment-midterm` for running the test script.
+
+Building the Docker container and tagging it as `cdc-diabetes`
 ```bash
 docker build -t cdc-diabetes .
 ```
@@ -305,12 +345,15 @@ docker run --rm -p 9696:9696 cdc-diabetes
 Testing the prediction service in the Docker container from the virtual environment `(deployment-midterm)`.
 
 ```bash
+# activate the virtual environment
+conda activate deployment-midterm
+# run the test script
 python test.py	
 ```
 
 <!-- TODO: tbd containerization-->
-## ☁️ Cloud Deployment
-tbd
+##  Cloud Deployment
+☁️ tbd
 <!-- TODO: tbd cloud deployment -->
 
 
