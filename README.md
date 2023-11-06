@@ -372,6 +372,7 @@ docker pull ai2ys/mlzoomcamp-midterm-project:0.0.0
 ##  Cloud Deployment
 ☁️ Instructions for the cloud deployment using AWS Elastic Beanstalk.
 
+
 Prerequisites
 - Amazon AWS Account<br>
     For this task an AWS account is required. Please create an AWS account following the instructions from [Machine Learning Bookcamp - Creating an AWS Account](https://mlbookcamp.com/article/aws).
@@ -386,6 +387,9 @@ Prerequisites
     conda activate awsebcli
     # check AWS Elastic Beanstalk CLI version
     eb --version
+
+
+🎞️ Video of cloud deployment showing all steps below: 🔗 [https://youtu.be/eu-TP17kvwc](https://youtu.be/eu-TP17kvwc)
 
 
 Creating and running the prediction service on AWS Elastic Beanstalk
