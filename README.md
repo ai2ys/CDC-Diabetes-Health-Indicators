@@ -78,7 +78,7 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 
 💡 In this project, we utilize the ucimlrepo Python package to download the initial dataset. To ensure reproducibility, all relevant data for exploratory data analysis (EDA) and training will be stored locally. This approach safeguards against potential issues, such as unavailability or changes to the dataset in the UCI Machine Learning Repository over time.
 
-📥 How the dataset was downloaded and stored locally is described in the EDA notebook [`eda.ipynb`](eda.ipynb). The dataset and parts of the metadata is downloaded and stored in the [./dataset](dataset) folder locally.
+📥 How the dataset was downloaded and stored locally is described in the EDA notebook [`notebook.ipynb`](notebook.ipynb). The dataset and parts of the metadata is downloaded and stored in the [./dataset](dataset) folder locally.
 - dataframe - [./dataset/data.csv](dataset/data.csv)
 - information about variables - [./dataset/variables.csv](dataset/variables.csv)
 - metadata (only some parts of it) - [./dataset/metadata_partially.json](dataset/metadata_partially.json)
@@ -94,7 +94,7 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 1. Model training
 1. Model evaluation
 
-📓 The EDA and model training will be performed in a Jupyter Notebook [`eda.ipynb`](eda.ipynb). In this notebook, we will perform the following steps:
+📓 The EDA and model training will be performed in a Jupyter Notebook [`notebook.ipynb`](notebook.ipynb). In this notebook, we will perform the following steps:
 
 1. Exploratory Data Analysis (EDA)
 1. Data preprocessing
