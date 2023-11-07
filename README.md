@@ -1,4 +1,3 @@
-
 # CDC Diabetes Health Indicators<br>*(MLZoomCamp midterm project)*
 
 Table of Contents: 
@@ -16,20 +15,18 @@ Table of Contents:
 ## Introduction
 
 📖
-This project uses the [CDC Diabetes Health Indicators dataset](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators) dataset for training a model to predict if a patient is diabetic/pre-diabetic or does not have diabetes based on the patients heath records.
+This project uses the [CDC Diabetes Health Indicators dataset](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators) that can be used for training a model to predict if persons are diabetic/pre-diabetic or non-diabetic diabetes based on their heath records.
+The dataset was created to to better understand the relationship between lifestyle and diabetes in the US and the creation was funded by the [CDC (Center for Disease Control and Prevention)](https://www.cdc.gov/).
 
+**Problem:** Diabetes is a severe illness that can lead to serious health problems such as heart disease, blindness, kidney failure, and so on. Detecting the illness in an early stage can help to prevent or delay these health issues.
 
-**Problem:** Diabetes is a severe illness that can lead to serious health problems such as heart disease, blindness, kidney failure, and so on. Detecting the illness in an early stage can help to prevent or delay these health problems.
+**Task:** This midterm project aims to build a service that predicts whether a patient is (pre-)diabetic or healthy using the previous mentioned data provided by the "CDC Diabetes Health Indicators Dataset". 
 
-**Task:** This midterm project aims to build a service that predicts whether a patient has diabetes, is pre-diabetic, or healthy using data provided by the "Diabetes Health Indicators Dataset" provided by the CDC. 
-
-More information about the dataset can be found in the [Dataset Information](#dataset-information) section.
-
-The dataset used in this project was created to to better understand the relationship between lifestyle and diabetes in the US and the creation was funded by the [CDC (Center for Disease Control and Prevention)](https://www.cdc.gov/).
+More information and insights about the dataset can be found in the [Dataset Information](#dataset-information) section.
 
 ## Dataset Information
 📋 Information regarding the dataset
-- Source and download location
+- Dataset source and dataset download location
 - Features variables
 - Target variable
 
@@ -39,10 +36,11 @@ The dataset used in this project was created to to better understand the relatio
 
 The [CDC Diabetes Health Indicators dataset](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators) is available on the [UCI Machine Learning Repository](https://archive.ics.uci.edu/). 
 
+Information from the dataset page:
 - Each row of the dataset represents a person participating in the study.
 - The dataset contains 21 feature variables (categorical and integer) and 1 target variable (binary).
 - Cross validation or a fixed train-test split could be used for data splits. 
-- It contains sensitive data such as gender, income, and education level. 
+- The dataset contains sensitive data such as gender, income, and education level. 
 - Data preprocessing was performed by bucketing of age. The dataset has no missing values. 
 
 
@@ -76,12 +74,17 @@ The quote states that the dataset contains 35 features. However, the dataset pag
 https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 
 
-💡 In this project, we utilize the ucimlrepo Python package to download the initial dataset. To ensure reproducibility, all relevant data for exploratory data analysis (EDA) and training will be stored locally. This approach safeguards against potential issues, such as unavailability or changes to the dataset in the UCI Machine Learning Repository over time.
+💡 In this project, we utilize the `ucimlrepo` Python package to download the initial dataset. To ensure reproducibility, all relevant data for exploratory data analysis (EDA) and training will be stored locally in the ([`./dataset`](dataset) folder. This approach safeguards against potential issues, such as unavailability or changes to the dataset in the UCI Machine Learning Repository over time.
 
-📥 How the dataset was downloaded and stored locally is described in the EDA notebook [`notebook.ipynb`](notebook.ipynb). The dataset and parts of the metadata is downloaded and stored in the [./dataset](dataset) folder locally.
+📥 How the dataset was downloaded and stored locally is described in the EDA notebook [`notebook.ipynb`](notebook.ipynb). The dataset and parts of the metadata are downloaded and stored in the [./dataset](dataset) folder locally.
 - dataframe - [./dataset/data.csv](dataset/data.csv)
 - information about variables - [./dataset/variables.csv](dataset/variables.csv)
 - metadata (only some parts of it) - [./dataset/metadata_partially.json](dataset/metadata_partially.json)
+
+📊 During EDA the generated dataset splits (train, validation, test) have been downloaded to separate files. These will be used later on for running the training on the 'full training' dataset (train + validation) in the final [`train.py`](train.py) script. 
+- [`split_train.csv`](`split_train.csv`)
+- [`split_val.csv`](`split_val.csv`)
+- [`split_test.csv`](`split_test.csv`)
 
 
 ## EDA and Model Training
@@ -144,21 +147,23 @@ All required steps for setting up the virtual environment to run the notebook ar
 
 
 > *Additional information:*     
->The commands above worked in WSL2 (Windows Subsystem for Linux) on Windows 11 and should be the same on Linux. The Conda version installed on my system is `23.0.9` ([Conda command reference `23.9.x`](https://docs.conda.io/projects/conda/en/23.9.x/commands/index.html).\
-> In case you are using a different Conda version and the Conda commands do not work on your system, check the conda cheat-sheet of your installed conda version for the correct commands.
+>The commands above worked in WSL2 (Windows Subsystem for Linux) on Windows 11 and should be the same on Linux. The `conda` version installed on my system is `23.0.9` ([Conda command reference `23.9.x`](https://docs.conda.io/projects/conda/en/23.9.x/commands/index.html).\
+> In case you are using a different `conda` version and the `conda` commands do not work on your system, check the `conda` cheat-sheet of your installed `conda` version for the correct commands.
 
 
 ### Running the Notebook
 
-Information on▶️ running the 📓notebook.
+Information on ▶️ running the 📓 notebook.
 
 The previous created virtual environment `(mlzoomcamp-midterm)` has JupyterLab installed. In order to start JupyterLab, the virtual environment needs to be activated first. Activate the virtual environment that we created in the previous section [🛠️ Virtual Environment Setup](#virtual-environment-setup).
 
 ```bash
 # navigate to project directory, the location and command (here: 'cd') might differ on your system
-cd mlzoomcamp-midterm-project
-# activating the virtual environment using 'mlzoomcamp-midterm
+cd CDC-Diabetes-Health-Indicators
+
+# activate the virtual environment using 'mlzoomcamp-midterm
 conda activate mlzoomcamp-midterm
+
 # within the activated environment indicated by '(mlzoomcamp-midterm)' start JupyterLab 
 jupyter lab
 ```
@@ -167,12 +172,12 @@ jupyter lab
 
 💡Insights and Results from the 📊 EDA (exploratory data analysis) and the 🧠 Model Training.
 
-<!-- 💡Insights and Results from 📊 EDA and 🧠 Model Training -->
-
 
 #### EDA - Variables (Target and Features) 
 
 💡Information revealed during the 📊 EDA from the dataset and its metadata.
+
+The following data was retrieved after downloading the dataset in the EDA notebook using the `ucimlrepo` Python package and storing the 'variables' information to [dataset/variables.csv](dataset/variables.csv). In order to not duplicate data in multiple files the following data hast been stored here and not in the EDA notebook.
 
 |  | Type | Description | 
 | --- | --- | --- |
@@ -237,7 +242,9 @@ The [BMI (body mass index)](https://en.wikipedia.org/wiki/Body_mass_index) is ca
 
 $$
 BMI_{\text{float}} = \frac{mass_{kg}}{height_{m}^2}
-\\
+$$
+
+$$
 BMI_{\text{integer}} = \text{integer}\left(\frac{mass_{kg}}{height_{m}^2} + 0.5 \right)
 $$
 
@@ -247,14 +254,14 @@ $$
 ### Export notebook to Python script
 📤Information on training code exported to the 🐍 Python script. The script will cover the following tasks:
 - Loading the dataset splits: train, validation, and test
-- Creating a 'full training' dataset consisting of training and validation splits
+- Creating a 'full training' dataset consisting of training split and validation split
 - Creating a test dataset consisting of the test split
-- Training the model on the 'full training' dataset
+- Training the model on the 'full training' (train + validation) dataset
 - Evaluating the model on the test dataset
 - Saving the following data to files (bin and json)
     - Model
     - DictVectorizer (fitted on 'full training' dataset)
-    - Normalization values (determined on 'full training' dataset in order to normalize the value ranges of some feature variables)
+    - Normalization values (determined on 'full training' dataset in order to normalize the value ranges of some feature variables) 
 
 All code that is required for training the final model will be exported to the [`train.py`](train.py) file.
 
@@ -268,13 +275,16 @@ conda activate mlzoomcamp-midterm
 python train.py
 ```
 
-For later testing the model with the predict service sample a patient's data information from the test dataset. For this purpose the following script can be used to randomly sampling a test dataset entry. The sample will be stored to [`test_sample.json`](test_sample.json).
+For later testing the model we will take a random sample from the test dataset. For this purpose the following script is used. It will randomly sample a test dataset entry (row) and store it as `JSON` file. The sample will be stored to [`test_sample.json`](test_sample.json).
 
 ```bash
-# randomly
+# Activate the development environment, if not already done
+conda activate mlzoomcamp-midterm
+
+# sample randomly without seed point
 python sample_from_test.py
 
-# using a specific seed value
+# sample randomly using a specific seed point
 python sample_from_test.py --seed 1234
 ```
 
