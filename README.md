@@ -5,12 +5,19 @@ Table of Contents:
 1. [📋 Dataset Information](#dataset-information)
 1. [📊 EDA and 🧠 Model Training](#eda-and-model-training)
     1. [🛠️ Virtual Environment Setup](#virtual-environment-setup)
-    1. [▶️ Running the 📓 Notebook](#running-the-notebook)
-    1. [💡Information from 📊 EDA and 🧠 Model Training](#information-from-eda-and-model-training)
-    1. [📤 Export notebook to 🐍 Python script](#export-notebook-to-python-script)
+    1. [📓 Run Jupyter Notebook](#run-jupyter-notebook)
+    1. [💡Information from EDA and Model Training](#information-from-eda-and-model-training)
+    1. [📤 Export Notebook to  Python Script](#export-notebook-to-python-script)
 1. [🧩 Model Deployment](#model-deployment)
+    1. [⚙️ Test Model Deployment](#test-model-deployment)
 1. [🐋 Containerization](#containerization)
+    1. [🛠️ Create Pipfile and Pipfile.lock](#create-pipfile-and-pipfilelock)
+    1. [▶️ Run Docker Container and Test the Service](#run-docker-container-and-test-the-service)
 1. [☁️ Cloud Deployment](#cloud-deployment)
+    1. [📋 Prerequisites](#prerequisites)
+    1. [▶️ Run and Test Cloud Deployment](#run-and-test-cloud-deployment)
+
+1. [MLZoomCamp Midterm Project General Information](#mlzoomcamp-midterm-project-general-information)
 
 ## Introduction
 
@@ -76,10 +83,10 @@ https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset
 
 💡 In this project, we utilize the `ucimlrepo` Python package to download the initial dataset. To ensure reproducibility, all relevant data for exploratory data analysis (EDA) and training will be stored locally in the ([`./dataset`](dataset) folder. This approach safeguards against potential issues, such as unavailability or changes to the dataset in the UCI Machine Learning Repository over time.
 
-📥 How the dataset was downloaded and stored locally is described in the EDA notebook [`notebook.ipynb`](notebook.ipynb). The dataset and parts of the metadata are downloaded and stored in the [./dataset](dataset) folder locally.
-- dataframe - [./dataset/data.csv](dataset/data.csv)
-- information about variables - [./dataset/variables.csv](dataset/variables.csv)
-- metadata (only some parts of it) - [./dataset/metadata_partially.json](dataset/metadata_partially.json)
+📥 How the dataset was downloaded and stored locally is described in the EDA notebook [`notebook.ipynb`](notebook.ipynb). The dataset and parts of the metadata are downloaded the [`notebook.ipynb`](notebook.ipynb) and stored in the [`./dataset`](dataset) folder locally.
+- dataframe - [`./dataset/data.csv`](dataset/data.csv)
+- information about variables - [`./dataset/variables.csv`](dataset/variables.csv)
+- metadata (only some parts of it) - [`./dataset/metadata_partially.json`](dataset/metadata_partially.json)
 
 📊 During EDA the generated dataset splits (train, validation, test) have been downloaded to separate files. These will be used later on for running the training on the 'full training' dataset (train + validation) in the final [`train.py`](train.py) script. 
 - [`split_train.csv`](`split_train.csv`)
@@ -151,14 +158,14 @@ All required steps for setting up the virtual environment to run the notebook ar
 > In case you are using a different `conda` version and the `conda` commands do not work on your system, check the `conda` cheat-sheet of your installed `conda` version for the correct commands.
 
 
-### Running the Notebook
+### Run Jupyter Notebook
 
-Information on ▶️ running the 📓 notebook.
+Information on ▶️ running the 📓 Jupyter Notebook [`notebook.ipynb`](notebook.ipynb).
 
 The previous created virtual environment `(mlzoomcamp-midterm)` has JupyterLab installed. In order to start JupyterLab, the virtual environment needs to be activated first. Activate the virtual environment that we created in the previous section [🛠️ Virtual Environment Setup](#virtual-environment-setup).
 
 ```bash
-# navigate to project directory, the location and command (here: 'cd') might differ on your system
+# navigate to project directory, the location and command might differ on your system
 cd CDC-Diabetes-Health-Indicators
 
 # activate the virtual environment using 'mlzoomcamp-midterm
@@ -177,7 +184,7 @@ jupyter lab
 
 💡Information revealed during the 📊 EDA from the dataset and its metadata.
 
-The following data was retrieved after downloading the dataset in the EDA notebook using the `ucimlrepo` Python package and storing the 'variables' information to [dataset/variables.csv](dataset/variables.csv). In order to not duplicate data in multiple files the following data hast been stored here and not in the EDA notebook.
+The following data was retrieved after downloading the dataset in the EDA [`notebook.ipynb`](notebook.ipynb) using the `ucimlrepo` Python package and storing the 'variables' information to [dataset/variables.csv](dataset/variables.csv). In order to not duplicate data in multiple files the following data hast been stored here and not in the EDA notebook.
 
 |  | Type | Description | 
 | --- | --- | --- |
@@ -200,7 +207,7 @@ Features in are sorted in the table below using their data type:
 
 | Features | Type | Description | 
 | --- | --- | --- |
-| BMI | Integer | Body Mass Index<br>The [BMI (body mass index)](https://en.wikipedia.org/wiki/Body_mass_index) is calculated using the following formula: $$BMI = \frac{mass_{kg}}{height_{m}^2}$$|
+| BMI | Integer | Body Mass Index|
 | MentHlth | Integer | Now thinking about your mental health, which includes stress, depression, and problems with emotions, for how many days during the past 30 days was your mental health not good?<br> scale 1-30 days |
 | PhysHlth | Integer | Now thinking about your physical health, which includes physical illness and injury, for how many days during the past 30 days was your physical health not good?<br> scale 1-30 days |
 |  |  |  |
@@ -225,9 +232,10 @@ Features in are sorted in the table below using their data type:
 | DiffWalk | Binary | Do you have serious difficulty walking or climbing stairs? |
 
 
-#### EDA - missing values, duplicates, imbalances, etc.
+#### EDA - Missing Values, Duplicates, Imbalances, etc.
 
 💡Information revealed about the dataset during 📊EDA regarding
+
 - Missing values
     - ✅ As stated in the dataset information, the dataset has no missing values
 - Duplicates
@@ -251,40 +259,40 @@ $$
 
 
 
-### Export notebook to Python script
-📤Information on training code exported to the 🐍 Python script. The script will cover the following tasks:
+### Export Notebook to Python Script
+📤 The code for training the final model got exported to the 🐍 Python script [`train.py`](train.py). The script will covers the following tasks:
+
 - Loading the dataset splits: train, validation, and test
-- Creating a 'full training' dataset consisting of training split and validation split
 - Creating a test dataset consisting of the test split
+- Creating a 'full training' dataset consisting of training split and validation split
 - Training the model on the 'full training' (train + validation) dataset
 - Evaluating the model on the test dataset
+    - Printing the metrics to the command line
 - Saving the following data to files (bin and json)
     - Model
     - DictVectorizer (fitted on 'full training' dataset)
     - Normalization values (determined on 'full training' dataset in order to normalize the value ranges of some feature variables) 
 
-All code that is required for training the final model will be exported to the [`train.py`](train.py) file.
-
-🐍 Make sure the development environment defined in section [🛠️ Virtual Environment Setup](#virtual-environment-setup) is activated before running the following commands.
+🐍 For running the [`train.py`](train.py) script make sure the development environment defined in section [🛠️ Virtual Environment Setup](#virtual-environment-setup) is activated before running the following commands.
 
 ```bash
-# Activate the development environment
+# 🐍 Activate the development environment
 conda activate mlzoomcamp-midterm
 
-# ▶️ Execute the 🐍 Python script
+# ▶️ Execute the training script
 python train.py
 ```
 
-For later testing the model we will take a random sample from the test dataset. For this purpose the following script is used. It will randomly sample a test dataset entry (row) and store it as `JSON` file. The sample will be stored to [`test_sample.json`](test_sample.json).
+🎲 We will now randomly sample an entry from the test dataset for testing the model later on. For this purpose the script [`sample_from_test.py`](sample_from_test.py) is used. The script will randomly sample a test dataset entry (row) and store it as `JSON` file [`test_sample.json`](test_sample.json).
 
 ```bash
-# Activate the development environment, if not already done
+# 🐍 Activate the development environment, if not already done
 conda activate mlzoomcamp-midterm
 
-# sample randomly without seed point
+# 🎲 sample randomly without seed point
 python sample_from_test.py
 
-# sample randomly using a specific seed point
+# 🎲 sample randomly using a specific seed point
 python sample_from_test.py --seed 1234
 ```
 
@@ -292,60 +300,73 @@ This [`test_sample.json`](test_sample.json) will be used when testing the model 
 
 ## Model Deployment
 
-🧩 For deploying 
+🧩 For deploying create a new virtual environment for testing the deployment.
 
-Create a new virtual environment for testing the deployment.
-
-1. Creating the virtual environment using Python 3.10.12
+1. Create the a environment using Python 3.10.12
     ```bash
     conda create --name deployment-midterm python=3.10.12
     ```	
 
-1. Activating the virtual environment
+1. Activate the virtual environment
     ```bash
     conda activate deployment-midterm
     ```
-    The command prompt should now indicate that the virtual environment is activated and show the name of the virtual environment in parentheses `(deployment-midterm)`.\
-    Within the activated virtual environment `(deployment-midterm)` perform the following steps:
+    
+    Within the activated virtual environment `(deployment-midterm)` install the requirements from the [`requirements-deployment.txt`](deployment-eda.txt) 
+    ```bash
+    pip install -r requirements-deployment.txt
+    ```
 
-    1. Install the requirements from the [`requirements-deployment.txt`](deployment-eda.txt) 
-        ```bash
-        pip install -r requirements-deployment.txt
-        ```
-    1. Test the deployment script starting the predict service
-        <!-- #waitress-serve --listen=0.0.0.0:9696 predict:app -->
-        ```bash
-        python predict.py
-        ```
-        Pass a sample [`test_sample.py`](test_sample.py) to the predict service
-        ```bash	
-        python test_predict.py
-        ```
+### Test Model Deployment
 
-    1. Creating a Pipfile and Pipfile.lock for containerization using `pipenv`
-        1. Install `pipenv` 
-            ```bash
-            pip install pipenv==2023.10.24
-            ```
-        1. Create a `Pipfile` and `Pipfile.lock` based on the provided `requirements-eda.txt`
-            ```bash
-            pipenv install -r requirements-deployment.txt
-            ```
-        <!-- 1. Activate the `pipenv shell` for this project
-            ```bash
-            pipenv shell
-            ``` -->
+⚙️ Test the deployment script starting the predict service will require two terminal windows
+
+1. Terminal windows #1: Run the predict service
+
+    <!-- #waitress-serve --listen=0.0.0.0:9696 predict:app -->
+    ```bash
+    # activate 'deployment-midterm', if not already activated 
+    conda activate deployment-midterm 
+    # start the predict service
+    python predict.py
+    ```
+
+1. Terminal window #2: Execute the http-request using [`test_sample.py`](test_sample.py), which will use the sample from [`test_sample.json`](test_sample.json)
+
+    ```bash	
+    # activate 'deployment-midterm', if not already activated 
+    conda activate deployment-midterm
+    # test the predict service using the sample from 'test_sample.json'
+    python test_predict.py
+    ```
+
+
 
 ## Containerization
 
-🐋 Putting the prediction service in a Docker container. 
+🐋 Putting the prediction service in a Docker container, which requires Docker being installed on your system. 
 
-Prerequisites
-- Docker
-- Activated environment `deployment-midterm` for running the test script.
+### Create Pipfile and Pipfile.lock
 
+🛠️ Create a Pipfile and Pipfile.lock for containerization using `pipenv`
+1. Install `pipenv` 
+    ```bash
+    pip install pipenv==2023.10.24
+    ```
+1. Create a `Pipfile` and `Pipfile.lock` based on the provided `requirements-eda.txt`
+    ```bash
+    pipenv install -r requirements-deployment.txt
+    ```
+<!-- 1. Activate the `pipenv shell` for this project
+    ```bash
+    pipenv shell
+    ``` -->
+
+
+### Run Docker Container and Test the Service
 
 The Docker image `docker pull ai2ys/mlzoomcamp-midterm-project:0.0.0` has been pushed to the 🐋 DockerHub registry. Therefore you can run the container without prior building by just running the container, which will pull the image from DockerHub.
+
 
 <!-- 
 Command used for pushing the Docker image
@@ -363,12 +384,13 @@ docker pull ai2ys/mlzoomcamp-midterm-project:0.0.0
     docker build -t ai2ys/mlzoomcamp-midterm-project:0.0.0 .
     ```
 
-1. Running the Docker container
+1. Running the Docker container (terminal windows #1)
     ```bash	
     docker run --rm -p 9696:9696 ai2ys/mlzoomcamp-midterm-project:0.0.0
     ```
 
-1. Testing the prediction service in the Docker container from the virtual environment `(deployment-midterm)`.
+1. Testing the prediction service in the Docker container from the virtual environment `(deployment-midterm)`.\
+Open a new terminal window and execute the following commands (terminal window #2)
 
     ```bash
     # activate the virtual environment
@@ -378,12 +400,10 @@ docker pull ai2ys/mlzoomcamp-midterm-project:0.0.0
     ```
 
 
-
 ##  Cloud Deployment
 ☁️ Instructions for the cloud deployment using AWS Elastic Beanstalk.
 
-
-Prerequisites
+### Prerequisites
 - Amazon AWS Account<br>
     For this task an AWS account is required. Please create an AWS account following the instructions from [Machine Learning Bookcamp - Creating an AWS Account](https://mlbookcamp.com/article/aws).
 
@@ -391,50 +411,64 @@ Prerequisites
     ```bash	
     # create virtual environment for AWS Elastic Beanstalk
     conda create --name awsebcli python=3.10.12 
+
     # install AWS Elastic Beanstalk CLI
     pip install awsebcli==3.20.10
+
     # activate the virtual environment
     conda activate awsebcli
+
     # check AWS Elastic Beanstalk CLI version
     eb --version
+    ```
 
+### Run and Test Cloud Deployment
 
 🎞️ Video of cloud deployment showing all steps below: 🔗 [https://youtu.be/eu-TP17kvwc](https://youtu.be/eu-TP17kvwc)
 
 
-Creating and running the prediction service on AWS Elastic Beanstalk
+▶️ Steps for creating and running the prediction service on AWS Elastic Beanstalk.
 
-1. Initialize AWS Elastic Beanstalk project
+- Initialize AWS Elastic Beanstalk project
     ```bash	
-    # if not already using activate the virtual environment
+    # activate the virtual environment
     conda activate awsebcli
     # initialize eb, select region, specify credentials
     eb init -p "Docker running on 64bit Amazon Linux 2023" -r eu-west-1 --profile <profile> mlzoomcamp-midterm-project
     ```
-1. Using AWS Elastic Beanstalk to run the service locally
-    ```bash
-    # if not already using activate the virtual environment
-    conda activate awsebcli
-    eb local run --port 9696
-    ```
-    In another terminal run the [`test_predict.py`](test_predict.py)
-    ```bash
-    conda activate mlzoomcamp-midterm
-    python test_predict.py
-    ```
-1. Run the prediction service on AWS Elastic Beanstalk
-    ```bash
-    # if not already using activate the virtual environment
-    conda activate awsebcli
-    eb create mlzoomcamp-midterm-env
-    ```
-    In another terminal run the [`test_predict.py`](test_predict.py)
-    ```bash
-    conda activate mlzoomcamp-midterm
-    python test_predict.py --url <elastic beanstalk url>
-    ```
+- Test locally using Elastic Beanstalk
 
-1. When we are done running the prediction service on AWS Elastic Beanstalk
+    1. Terminal window #1: Using AWS Elastic Beanstalk to run the service locally
+        ```bash
+        # activate the virtual environment
+        conda activate awsebcli
+        eb local run --port 9696
+        ```
+    1. Terminal window #2: Run the [`test_predict.py`](test_predict.py) script
+        ```bash
+        # activate the virtual environment 'deployment-midterm'
+        conda activate deployment-midterm
+        python test_predict.py
+        ```
+
+- Test cloud deployment using Elastic Beanstalk
+    1. Terminal window #1: Create the Elastic Beanstalk environment
+        ```bash
+        # activate the virtual environment 'awsebcli'
+        conda activate awsebcli
+        eb create mlzoomcamp-midterm-env
+        ```
+        When the service is running copy the URL to the clipboard 📋
+
+    1. Terminal window #2: Run the [`test_predict.py`](test_predict.py) script
+        In another terminal run the [`test_predict.py`](test_predict.py) and insert the URL 
+        ```bash
+        # activate the virtual environment 'deployment-midterm'
+        conda activate deployment-midterm
+        python test_predict.py --url <elastic beanstalk url>
+        ```
+
+- When we are done running the prediction service on AWS Elastic Beanstalk
     ```bash
     # if not already using activate the virtual environment
     conda activate awsebcli
