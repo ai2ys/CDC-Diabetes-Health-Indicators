@@ -1,7 +1,3 @@
-# installing latest versions as mentioned in the instruction
-# (https://github.com/DataTalksClub/machine-learning-zoomcamp/blob/master/01-intro/06-environment.md)
-# for all other libraries installing specific versions with option for patch updates (latest version on 2023-11-14)
-
 jupyterlab==4.0.6
 
 numpy==1.26.0
